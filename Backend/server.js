@@ -38,38 +38,12 @@ let projects = [
 app.get("/profile", (req, res) => {
   res.json(profile);
 });
-
-app.post("/profile", (req, res) => {
-  profile = { ...profile, ...req.body };
-  res.json({ message: "Profile updated successfully!", profile });
-});
-
 app.get("/skills", (req, res) => {
   res.json(skills);
 });
-
-app.post("/skills", (req, res) => {
-  const { name, image } = req.body;
-  if (!name || !image) {
-    return res.status(400).json({ error: "Missing name or image" });
-  }
-  skills.push({ name, image });
-  res.json({ message: "Skill added successfully!", skills });
-});
-
 app.get("/projects", (req, res) => {
   res.json(projects);
 });
-
-app.post("/projects", (req, res) => {
-  const { name, description, image } = req.body;
-  if (!name || !description || !image) {
-    return res.status(400).json({ error: "Missing fields" });
-  }
-  projects.push({ name, description, image });
-  res.json({ message: "Project added successfully!", projects });
-});
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

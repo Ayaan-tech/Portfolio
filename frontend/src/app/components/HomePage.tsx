@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-interface HomePageProps {
-  onNavigate: () => void;
-}
 
-export default function HomePage({ onNavigate }: HomePageProps) {
+
+export default function HomePage() {
+  const router = useRouter();
+  const navigate = () => router.push("/skills");
   const [profile, setProfile] = useState({
     name: "",
     image: "",
@@ -31,7 +31,8 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
       <Image
-        src={profile.image}
+        src='/images/dp.jpg'
+        priority={true}
         alt={profile.name}
         width={200}
         height={200}
@@ -50,7 +51,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           <Linkedin className="mr-2" />
         </a>
       </div>
-      <Button onClick={onNavigate} className="text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 transition-colors">
+      <Button onClick={navigate} className="text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 transition-colors">
         View My Skills
       </Button>
     </div>

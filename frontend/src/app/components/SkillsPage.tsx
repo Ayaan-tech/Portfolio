@@ -2,22 +2,25 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
-interface SkillsPageProps {
-  onNavigate: () => void;}
 
-export default function SkillsPage({ onNavigate }: SkillsPageProps) {
+
+export default function SkillsPage() {
+  const router = useRouter();
+  const onNavigate = () => router.push("/");
+
   const [skills, setSkills] = useState([]);
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:5000/skills")
       .then(response => setSkills(response.data))
-      .catch(error => console.error("Error fetching skills:", error));
+      .catch(error => console.error("Error hai bhaya:", error));
 
     axios.get("http://localhost:5000/projects")
       .then(response => setProjects(response.data))
-      .catch(error => console.error("Error fetching projects:", error));
+      .catch(error => console.error("Error hai bhaya:", error));
   }, []);
 
   return (
